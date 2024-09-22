@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "pg",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1720964101965,
+      "tag": "0000_reflective_dakota_north",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1720968653369,
+      "tag": "0001_bizarre_redwing",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1726769765125,
+      "tag": "0002_safe_tinkerer",
+      "breakpoints": true
+    }
+  ]
+}
