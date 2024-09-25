@@ -1,4 +1,14 @@
-import { pgTable, text, timestamp, uuid } from 'drizzle-orm/pg-core';
+import { sql } from 'drizzle-orm';
+import {
+  boolean,
+  integer,
+  jsonb,
+  pgTable,
+  text,
+  timestamp,
+  uuid,
+} from 'drizzle-orm/pg-core';
+import { subscriptionStatus, prices } from './../../../migrations/schema';
 
 export const workspaces = pgTable('workspaces', {
   id: uuid('id').defaultRandom().primaryKey().notNull(),
@@ -50,4 +60,45 @@ export const files = pgTable('files', {
   folderId: uuid('folder_id').references(() => folders.id, {
     onDelete: 'cascade',
   }),
+});
+
+export const subscriptions = pgTable('subscriptions', {
+  id: text('id').primaryKey().notNull(),
+  userId: uuid('user_id').notNull(),
+  status: subscriptionStatus('status'),
+  metadata: jsonb('metadata'),
+  priceId: text('price_id').references(() => prices.id),
+  quantity: integer('quantity'),
+  cancelAtPeriodEnd: boolean('cancel_at_period_end'),
+  created: timestamp('created', { withTimezone: true, mode: 'string' }).default(
+    sql`new()`
+  ),
+  currentPeriodStart: timestamp('current_period_start', {
+    withTimezone: true,
+    mode: 'string',
+  }).default(sql`new()`),
+  currentPeriodEnd: timestamp('current_period_end', {
+    withTimezone: true,
+    mode: 'string',
+  }).default(sql`new()`),
+  endedAt: timestamp('ended_at', {
+    withTimezone: true,
+    mode: 'string',
+  }).default(sql`new()`),
+  cancelAt: timestamp('cancel_at', {
+    withTimezone: true,
+    mode: 'string',
+  }).default(sql`new()`),
+  canceledAt: timestamp('canceled_at', {
+    withTimezone: true,
+    mode: 'string',
+  }).default(sql`new()`),
+  trialStart: timestamp('trial_start', {
+    withTimezone: true,
+    mode: 'string',
+  }).default(sql`new()`),
+  trialEnd: timestamp('trial_end', {
+    withTimezone: true,
+    mode: 'string',
+  }).default(sql`new()`),
 });
