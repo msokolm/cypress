@@ -11,6 +11,12 @@ const Homepage = () => {
           pill="⭐ Tour workspace, Perfected"
           title="All-In-One Collaboration and Productivity Platform"
         />
+        <div className="mt-6 rounded-xl bg-white bg-gradient-to-r from-primary to-brand-primaryBlue p-[2px] sm:w-[300px]">
+
+          <Button>
+            
+          </Button>
+        </div>
       </div>
     </section>
   );
